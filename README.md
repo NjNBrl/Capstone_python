@@ -26,7 +26,7 @@ Capstone Project for Student Management File
                 - Science<br>
                 - Computer<br>
                 - Nepali<br>
-                - English<br></ul></li></ul>
+                - English<br></ul></li></ul></ul></li></ul>
         *For every student entry, teacher ID verification is required.*<br>
     
     1.3 **Display the teacher info on the basis of teacher ID you provide**<br>
