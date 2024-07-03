@@ -1,0 +1,58 @@
+[
+    {
+        "Teacher Name": "Dron Acharya",
+        "Teacher ID": "1000",
+        "Teacher Subject": "Archery",
+        "Teacher Email": "dronacharya@mahabharat.com",
+        "Teacher Phone": "1000000000",
+        "Teacher Address": "Hastinapur"
+    },
+    {
+        "Teacher Name": "Krip Acharya",
+        "Teacher ID": "1001",
+        "Teacher Subject": "Economics",
+        "Teacher Email": "krip@mahabharat.com",
+        "Teacher Phone": "1100000000",
+        "Teacher Address": "Hastinapur"
+    },
+    {
+        "Teacher Name": "Raju Bhai Tyata",
+        "Teacher ID": "1002",
+        "Teacher Subject": "Engineering Physics",
+        "Teacher Email": "rajubhaityataphd@gmail.com",
+        "Teacher Phone": "9898989898",
+        "Teacher Address": "Libali"
+    },
+    {
+        "Teacher Name": "Anil Ksula",
+        "Teacher ID": "1003",
+        "Teacher Subject": "Applied Mechanics",
+        "Teacher Email": "anilkasu@gmail.com",
+        "Teacher Phone": "09090909090",
+        "Teacher Address": "Jagati"
+    },
+    {
+        "Teacher Name": "Menson Lakhu",
+        "Teacher ID": "1004",
+        "Teacher Subject": "CoA",
+        "Teacher Email": "dontmenson@gmail.com",
+        "Teacher Phone": "98987676562",
+        "Teacher Address": "KamalBinayak"
+    },
+    {
+        "Teacher Name": "Putin",
+        "Teacher ID": "1111",
+        "Teacher Subject": "War Art",
+        "Teacher Email": "putin@gmail.com",
+        "Teacher Phone": "9876987645",
+        "Teacher Address": "Russia"
+    },
+    {
+        "Teacher Name": "Kaka",
+        "Teacher ID": "987",
+        "Teacher Subject": "Sports",
+        "Teacher Email": "kaka@gmail.com",
+        "Teacher Phone": "9800980098",
+        "Teacher Address": "Brazil"
+    }
+]
