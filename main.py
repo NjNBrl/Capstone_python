@@ -1,7 +1,9 @@
 import json
 from Packages import emailcheck,markscheck,phonecheck
 class Student:
-    def __init__(self):
+    def __init__(self)->None:
+        """Constructor of the class Student
+        """
         self._s_name = " "
         self._s_roll_no = " "
         self._s_email = " "
@@ -15,7 +17,9 @@ class Student:
         self._s_percentage = 0.0
         self._s_rank = 0 
         self._s_status = " "
-    def student_accept_Data(self):
+    def student_accept_Data(self)->None:
+        """Takes student data from the user
+        """
         while True:
             print("Enter the Student info:\n")
             self._s_name = input("Name: ")
@@ -71,7 +75,9 @@ class Student:
             z = y.upper()
             if z == "N":
                 break
-    def studet_write_Data(self):
+    def studet_write_Data(self)->None:
+        """Writes the student data into the file : data_student.json
+        """
         student = []
         student_data = {
             "Student Name" :self._s_name,
@@ -92,19 +98,23 @@ class Student:
         student.append(student_data)
         with open("data_student.json","w") as file:
             json.dump(student,file,indent = 4)
-    def pass_fail_determination(self):
+    def pass_fail_determination(self)->None:
+        """
+        Checks if the marks is in each subject is passing marks or not
+        """
         if self._marks_maths >= 32 and self._marks_science >= 32 and self._marks_computer >= 32 and self._marks_nepali >= 32 and self._marks_english >= 32:
             self._s_status = "PASS"
-            return("Pass")
         else:
             self._s_status = "FAIL"
-            return("Fail")
-    def percentage(self):
+    def percentage(self)->None:
+        """Calculates the percentage obtained by the student
+        """
         percentage = 0.00
         percentage = (self._marks_maths + self._marks_science + self._marks_computer + self._marks_english + self._marks_nepali) / 5
         self._s_percentage = percentage
-        return percentage
-    def highest_and_lowest_scores(self):
+    def highest_and_lowest_scores(self)->None:
+        """Reads marks of each student in each subject and displays highest and lowest in each subject
+        """
         maths_max = 0.0
         science_max = 0.0
         computer_max = 0.0
@@ -155,7 +165,13 @@ class Student:
             print("Computer:",computer_min)
             print("Nepali:",nepali_min)
             print("English:",english_min)
-    def rank(self,student_roll):
+    def rank(self,student_roll:str)->None:
+        """
+        Displays the rank of the student 
+
+        Args:
+            student_roll (str): takes the roll no of the student
+        """
         rank_order = []
         student_rank = []
         with open("data_student.json","r") as file:
@@ -172,7 +188,13 @@ class Student:
                                 if percentage == i:
                                     self._s_rank = index + 1
         print("Rank : ",self._s_rank)
-    def display_s_data(self,student_roll):
+    def display_s_data(self,student_roll:str)->None:
+        """
+        Displays student data on the basis of entered Roll No
+
+        Args:
+            student_roll (str): Student roll_no entered from the user
+        """
         print("Student data:")
         print("---------------")
         with open("data_student.json","r") as file:
@@ -184,7 +206,9 @@ class Student:
                         print(f"{key} : {value}")
 
 class Teacher(Student):
-    def __init__(self):
+    def __init__(self)->None:
+        """Constructor for the class Teacher
+        """
         self._t_name = " "
         self._t_id = " "
         self._t_email = " "
@@ -192,7 +216,9 @@ class Teacher(Student):
         self._t_phone = " "
         self._t_address = " "
         super().__init__()
-    def teacher_accept_Data(self):
+    def teacher_accept_Data(self)->None:
+        """Takes Teacher data from the user
+        """
         while True:    
             print("Enter the Teacher info:\n")
             self._t_name = input("Name: ")
@@ -216,7 +242,9 @@ class Teacher(Student):
             z = y.upper()
             if z == "N":
               break
-    def teacher_authenticate(self):
+    def teacher_authenticate(self)->None:
+        """Checks if the user is registered Teacher or not by matching entered ID with Teacher ID 
+        """
         teacher = []
         with open("data_teacher.json","r") as file:
             teacher = json.load(file)
@@ -227,7 +255,9 @@ class Teacher(Student):
                         self.teacher_accept_Data()
             else:
                     self.teacher_accept_Data()
-    def teacher_write_Data(self):
+    def teacher_write_Data(self)->None:
+        """Writes teacher data in data_teacher.json
+        """
         teacher = []
         teacher_data = {
             "Teacher Name" :self._t_name,
@@ -242,7 +272,9 @@ class Teacher(Student):
         teacher.append(teacher_data)
         with open("data_teacher.json","w") as file:
             json.dump(teacher,file,indent = 4)
-    def display_t_data(self):
+    def display_t_data(self)->None:
+        """Displays data of teacher on the basis of Teacher ID
+        """
         teacher_id = input("Enter the ID of the Teacher whose Data is to be displayed:")
         with open("data_teacher.json","r") as file:
             teacher = json.load(file)
@@ -252,18 +284,24 @@ class Teacher(Student):
                         key, value = x
                         if key == "Teacher Name" or key == "Teacher Email" or key == "Teacher Phone":
                             print(f"{key} : {value}")
-    def access_to_student_input(self):
+    def access_to_student_input(self)->None:
+        """A subroutine that provides access to enter student data after Teacher ID verification
+        """
         teacher_id = input("Enter your Teacher ID for verification:")
         with open("data_teacher.json","r") as file:
             teacher = json.load(file)
             for dictionary in teacher:
                 if dictionary["Teacher ID"] == teacher_id:
                     super().student_accept_Data()
-    def access_to_student_display(self):
+    def access_to_student_display(self)->None:
+        """A subroutine that provides access to Display Student Data on the basis of Entered Roll no
+        """
         student_roll = input("Enter student Roll No: ")
         super().display_s_data(student_roll)
         super().rank(student_roll)
-    def marks(self):
+    def marks(self)->None:
+        """A subroutine that provides access to highest and lowest scores
+        """
         super().highest_and_lowest_scores()
         
 
