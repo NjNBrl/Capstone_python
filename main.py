@@ -304,6 +304,7 @@ class Teacher(Student):
         """
         super().highest_and_lowest_scores()
         
+# Main program starts here
 
 t_obj = Teacher()
 choice = int(input("Are you a Teahcer or Student?\nIf Teacher : Enter 1\nIf Student : Enter 2\n"))
