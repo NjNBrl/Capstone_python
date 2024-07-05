@@ -1,6 +1,6 @@
 
 def email_check(email):
-      """
+    """
     A subroutine that accepts email address and checks wether it is a valid email address containing a domain name
     Args:
         email (str): an email entered by the user
