@@ -98,6 +98,7 @@ class Student:
         student.append(student_data)
         with open("data_student.json","w") as file:
             json.dump(student,file,indent = 4)
+        print("\033[92mData Updated Successfully\033[0m")
     def pass_fail_determination(self)->None:
         """
         Checks if the marks is in each subject is passing marks or not
@@ -245,6 +246,7 @@ class Teacher(Student):
     def teacher_authenticate(self)->None:
         """Checks if the user is registered Teacher or not by matching entered ID with Teacher ID 
         """
+        c = 0
         teacher = []
         with open("data_teacher.json","r") as file:
             teacher = json.load(file)
@@ -253,6 +255,10 @@ class Teacher(Student):
                 for dictionary in teacher:
                     if dictionary["Teacher ID"] == teacher_id:
                         self.teacher_accept_Data()
+                        c = 1
+                if c != 1:
+                    print("\033[91mInvalid Teacher ID.....\nRedirecting to main menu\033[0m")
+                    
             else:
                     self.teacher_accept_Data()
     def teacher_write_Data(self)->None:
@@ -272,33 +278,51 @@ class Teacher(Student):
         teacher.append(teacher_data)
         with open("data_teacher.json","w") as file:
             json.dump(teacher,file,indent = 4)
+        print("\033[92mData Updated Successfully\033[0m")
     def display_t_data(self)->None:
         """Displays data of teacher on the basis of Teacher ID
         """
+        c = 0
         teacher_id = input("Enter the ID of the Teacher whose Data is to be displayed:")
         with open("data_teacher.json","r") as file:
             teacher = json.load(file)
             for dictionary in teacher:
-                if dictionary["Teacher ID"] == teacher_id:
-                    for x in dictionary.items():
-                        key, value = x
-                        if key == "Teacher Name" or key == "Teacher Email" or key == "Teacher Phone":
-                            print(f"{key} : {value}")
+                    if dictionary["Teacher ID"] == teacher_id:
+                        for x in dictionary.items():
+                            key, value = x
+                            if key == "Teacher Name" or key == "Teacher Email" or key == "Teacher Phone":
+                                print(f"{key} : {value}")
+                                c = 1
+        if c != 1:
+            print("\033[91mNo data found\033[0m")
     def access_to_student_input(self)->None:
         """A subroutine that provides access to enter student data after Teacher ID verification
         """
+        c = 0
         teacher_id = input("Enter your Teacher ID for verification:")
         with open("data_teacher.json","r") as file:
             teacher = json.load(file)
             for dictionary in teacher:
-                if dictionary["Teacher ID"] == teacher_id:
-                    super().student_accept_Data()
+                    if dictionary["Teacher ID"] == teacher_id:
+                        super().student_accept_Data()
+                        c = 1
+        if c != 1:
+            print("\033[91mInvalid ID...Redirecting to main menu\033[0m")
     def access_to_student_display(self)->None:
         """A subroutine that provides access to Display Student Data on the basis of Entered Roll no
         """
+        c = 0
         student_roll = input("Enter student Roll No: ")
-        super().display_s_data(student_roll)
-        super().rank(student_roll)
+        with open("data_student.json","r") as file:
+                student = json.load(file)
+        for dictionary in student:     
+            if dictionary["Student Roll No"] == student_roll:
+                super().display_s_data(student_roll)
+                super().rank(student_roll)
+                c = 1
+        if c != 1:
+            print("\033[91mNo data found\033[0m")
+
     def marks(self)->None:
         """A subroutine that provides access to highest and lowest scores
         """
@@ -307,25 +331,28 @@ class Teacher(Student):
 # Main program starts here
 
 t_obj = Teacher()
-choice = int(input("Are you a Teahcer or Student?\nIf Teacher : Enter 1\nIf Student : Enter 2\n"))
-if choice == 1:
-    fir_choice = int(input("Teacher operations :\n1.Display Teacher Records\n2.Add New Teacher Records\n3.Display Student Records\n4.Add New Student Records\n")) 
-    if fir_choice == 1 :
-        t_obj.display_t_data()
-    elif fir_choice == 2:
-        t_obj.teacher_authenticate()
-    elif fir_choice == 3 :
-        t_obj.access_to_student_display()
-    elif fir_choice == 4:
-        t_obj.access_to_student_input()
-elif choice == 2:
-    sec_choice = int(input("Student Operations:\n1.View Records(Marks,Percentage and Rank)\n2.View highest and Lowest Marks in each subject\n"))
-    if sec_choice == 1 :
-        t_obj.access_to_student_display()
-    elif sec_choice == 2:
-        t_obj.marks()
+while True:
+    print("--------------------------------------------------------------------------------------------------------------------")
+    choice = input("Are you a Teahcer or Student?\nIf Teacher : Enter 1\nIf Student : Enter 2\n\033[94mExit?Enter 3\n\033[0m")
+    if choice == "1":
+        fir_choice = int(input("Teacher operations :\n1.Display Teacher Records\n2.Add New Teacher Records\n3.Display Student Records\n4.Add New Student Records\n")) 
+        if fir_choice == 1 :
+                t_obj.display_t_data()
+        elif fir_choice == 2:
+            t_obj.teacher_authenticate()
+        elif fir_choice == 3 :
+            t_obj.access_to_student_display()
+        elif fir_choice == 4:
+            t_obj.access_to_student_input()
+    elif choice == "2":
+        sec_choice = int(input("Student Operations:\n1.View Records(Marks,Percentage and Rank)\n2.View highest and Lowest Marks in each subject\n"))
+        if sec_choice == 1 :
+            t_obj.access_to_student_display()
+        elif sec_choice == 2:
+            t_obj.marks()
+        else:
+            print("\033[91mInvalid\033[0m")
+    if choice == "3":
+        break
     else:
-        print("Invalid")
-else:
-    print("Invalid")
-
+        continue
